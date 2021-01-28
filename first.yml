@@ -2,6 +2,6 @@
 - name: playbook
   hosts: localhost
   tasks:
-   - name: playbook
-     debug:
-       msg: "Hello {{ inventory_hostname }}"
+    - name: playbook
+      debug:
+        msg: "Hello {{ inventory_hostname }}"
