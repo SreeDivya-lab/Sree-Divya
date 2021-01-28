@@ -8,7 +8,7 @@
      register: output
    - debug:
        msg: "{{ output }}"
-     failed_when: output.rc == 1
+     failed_when: output.rc == 0
    - name: Creating log
      file:
        path: /var/www/html/logs
