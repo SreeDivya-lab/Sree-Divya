@@ -1,0 +1,20 @@
+---
+- name: Webserver
+  hosts: all
+  become: yes
+  tasks:
+   - name: Httpd is installed or not
+     shell: rpm -q httpd
+     register: output
+   - debug:
+       msg: "{{ output }}"
+     failed_when: output.rc == 1
+   - name: Creating log
+     file:
+       path: /var/www/html/logs
+       mode: 0755
+       state: directory
+   - name: Creating html
+     copy:
+       content: "{{ ansible_hostname }} ({{ ansible_default_ipv4.address }}) has been customized"
+       dest: /var/www/html/index.html
